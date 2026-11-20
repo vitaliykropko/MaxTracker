@@ -1,0 +1,312 @@
+:root {
+  color-scheme: dark;
+  background: #08080b;
+}
+body { margin: 0; padding: clamp(8px, 2.5vw, 36px); }
+#maxtracker-analytics {
+    max-width: 1240px;
+    margin-inline: auto;
+    color-scheme: dark;
+    --mt-black: #0b0b0e;
+    --mt-toolbar: #101014;
+    --mt-surface: #15151a;
+    --mt-ink: #f6f4fa;
+    --mt-muted: #aaa8b6;
+    --mt-rule: #2c2a34;
+    --mt-accent: #bdaaff;
+    --mt-on-accent: #1b142a;
+    --mt-mint: #80e5c1;
+    --mt-amber: #ffc28a;
+    color: var(--mt-ink);
+    background: var(--mt-black);
+    border: 1px solid var(--mt-rule);
+    border-radius: 14px;
+    overflow: clip;
+    container-type: inline-size;
+    font: 14px/1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI Variable', 'Segoe UI', sans-serif;
+  }
+  #maxtracker-analytics * { box-sizing: border-box; }
+  #maxtracker-analytics :is(h2, h3, ul) { margin: 0; }
+  #maxtracker-analytics h2 { font-size: clamp(24px, 4.3cqw, 37px); line-height: 1.12; letter-spacing: -.036em; font-weight: 680; }
+  #maxtracker-analytics h3 { font-size: 16px; line-height: 1.25; letter-spacing: -.01em; font-weight: 650; }
+  #maxtracker-analytics .mt-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 9px 12px;
+    background: var(--mt-toolbar);
+    border-bottom: 1px solid var(--mt-rule);
+    min-height: 58px;
+    padding: 10px 23px;
+  }
+  #maxtracker-analytics .mt-brand { display: flex; align-items: center; gap: 8px; font-weight: 670; }
+  #maxtracker-analytics .mt-brand img { border-radius: 7px; }
+  #maxtracker-analytics .mt-actions { justify-self: end; display: flex; gap: 5px; }
+  #maxtracker-analytics .mt-actions button, #maxtracker-analytics [data-close-settings] {
+    border: 1px solid var(--mt-rule);
+    background: var(--mt-surface);
+  }
+  #maxtracker-analytics .mt-source {
+    padding: 8px 23px 0;
+    font-size: 12px;
+    color: var(--mt-muted);
+    overflow-wrap: anywhere;
+  }
+  #maxtracker-analytics .mt-segment {
+    display: inline-grid;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    gap: 2px;
+    border: 1px solid var(--mt-rule);
+    border-radius: 8px;
+    background: #1a191f;
+    padding: 2px;
+  }
+  #maxtracker-analytics .mt-period { grid-auto-columns: auto; }
+  #maxtracker-analytics .mt-grouping { justify-self: start; }
+  #maxtracker-analytics :is(button, select) { font: inherit; font-size: 13px; }
+  #maxtracker-analytics button {
+    color: var(--mt-muted);
+    background: transparent;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  #maxtracker-analytics button:hover { color: var(--mt-ink); }
+  #maxtracker-analytics button[aria-pressed="true"] { color: var(--mt-on-accent); background: var(--mt-accent); }
+  #maxtracker-analytics .mt-grouping button[aria-pressed="true"] { color: var(--mt-accent); background: #312846; }
+  #maxtracker-analytics :is(button, select):focus-visible { outline: 2px solid var(--mt-accent); outline-offset: 2px; }
+  #maxtracker-analytics .mt-content { display: grid; gap: 19px; padding: 23px; }
+  #maxtracker-analytics .mt-content[hidden] { display: none; }
+  #maxtracker-analytics .mt-timeline p { margin: 8px 0 0; color: var(--mt-muted); max-width: 76ch; }
+  #maxtracker-analytics .mt-settings {
+    width: min(690px, calc(100% - 24px));
+    max-height: calc(100dvh - 32px);
+    padding: 18px;
+    color: var(--mt-ink);
+    background: #1b1921;
+    border: 1px solid #41394f;
+    border-radius: 12px;
+  }
+  #maxtracker-analytics .mt-settings::backdrop { background: #0009; }
+  #maxtracker-analytics :is(.mt-settings-head, .mt-settings-foot) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 9px;
+    flex-wrap: wrap;
+  }
+  #maxtracker-analytics .mt-settings h2 { font-size: 22px; }
+  #maxtracker-analytics .mt-settings h3 { margin-top: 18px; }
+  #maxtracker-analytics .mt-settings-hint { color: var(--mt-muted); font-size: 12px; margin: 5px 0 0; }
+  #maxtracker-analytics .mt-settings-list { margin-block: 5px 15px; }
+  #maxtracker-analytics .mt-settings-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 5px 10px;
+    padding-block: 7px;
+    border-bottom: 1px solid var(--mt-rule);
+  }
+  #maxtracker-analytics .mt-settings-id { grid-column: 1 / -1; overflow-wrap: anywhere; }
+  #maxtracker-analytics .mt-settings label { display: grid; gap: 3px; color: var(--mt-muted); font-size: 12px; }
+  #maxtracker-analytics .mt-settings label:only-of-type { grid-column: 1 / -1; }
+  #maxtracker-analytics .mt-settings input {
+    width: 100%;
+    min-width: 0;
+    min-height: 34px;
+    border: 1px solid var(--mt-rule);
+    border-radius: 6px;
+    padding: 5px 7px;
+    background: var(--mt-toolbar);
+    color: var(--mt-ink);
+    font: inherit;
+  }
+  #maxtracker-analytics [data-save-settings] { background: var(--mt-accent); color: var(--mt-on-accent); }
+  #maxtracker-analytics [data-settings-status] { color: var(--mt-muted); }
+  #maxtracker-analytics .mt-attention li strong { overflow-wrap: anywhere; }
+  #maxtracker-analytics .mt-date-form {
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    padding: 12px;
+    max-height: calc(100dvh - 16px);
+    overflow: auto;
+    border: 1px solid #41394f;
+    border-radius: 10px;
+    background: #1b1921;
+    color: var(--mt-ink);
+    box-shadow: 0 8px 24px #0009;
+  }
+  #maxtracker-analytics .mt-date-form:popover-open {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+    gap: 8px 9px;
+  }
+  #maxtracker-analytics .mt-date-form label { display: grid; gap: 3px; color: var(--mt-muted); font-size: 12px; }
+  #maxtracker-analytics .mt-date-form input {
+    min-width: 0;
+    min-height: 32px;
+    width: 100%;
+    padding: 4px 7px;
+    font: inherit;
+    font-size: 13px;
+    color: var(--mt-ink);
+    background: var(--mt-surface);
+    border: 1px solid var(--mt-rule);
+    border-radius: 7px;
+  }
+  #maxtracker-analytics .mt-date-actions { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 5px; }
+  #maxtracker-analytics .mt-date-form button { min-height: 32px; }
+  #maxtracker-analytics .mt-date-form [data-date-apply] { background: var(--mt-accent); color: var(--mt-on-accent); }
+  #maxtracker-analytics .mt-date-form input:focus-visible { outline: 2px solid var(--mt-accent); outline-offset: 2px; }
+  #maxtracker-analytics [data-date-error] { grid-column: 1 / -1; color: var(--mt-amber); font-size: 12px; }
+  #maxtracker-analytics [data-date-coverage] { grid-column: 1 / -1; color: var(--mt-muted); font-size: 12px; }
+  #maxtracker-analytics :is(.mt-heading, .mt-section-heading) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+  #maxtracker-analytics .mt-filters { display: flex; flex-wrap: wrap; gap: 6px 12px; }
+  #maxtracker-analytics .mt-filter { display: flex; gap: 7px; align-items: center; color: var(--mt-muted); font-size: 13px; }
+  #maxtracker-analytics select { color: var(--mt-ink); background: var(--mt-surface); border: 1px solid var(--mt-rule); border-radius: 7px; padding: 5px 8px; }
+  #maxtracker-analytics [data-chat] { width: 124px; }
+  #maxtracker-analytics .mt-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px; }
+  #maxtracker-analytics :is(.mt-metric, .mt-chart, .mt-table-wrap, .mt-attention) { background: var(--mt-surface); border: 1px solid var(--mt-rule); border-radius: 10px; }
+  #maxtracker-analytics .mt-metric { display: grid; grid-template-rows: auto auto 1fr; align-items: start; gap: 5px; padding: 12px 13px; }
+  #maxtracker-analytics .mt-metric > span { color: var(--mt-muted); font-size: 13px; }
+  #maxtracker-analytics .mt-metric strong { font-size: clamp(21px, 3.3cqw, 31px); line-height: 1.1; font-weight: 620; font-variant-numeric: tabular-nums; letter-spacing: -.023em; }
+  #maxtracker-analytics .mt-metric small, #maxtracker-analytics .mt-attention .mt-section-heading span { color: var(--mt-muted); font-size: 12px; }
+  #maxtracker-analytics .mt-rate strong { color: var(--mt-mint); }
+  #maxtracker-analytics .mt-reply strong { color: var(--mt-accent); }
+  #maxtracker-analytics .mt-track { height: 3px; margin-top: 2px; border-radius: 3px; overflow: hidden; background: #2a2a32; }
+  #maxtracker-analytics .mt-track span { display: block; height: 100%; background: var(--mt-mint); }
+  #maxtracker-analytics .mt-open { display: flex; flex-wrap: wrap; gap: 2px 8px; }
+  #maxtracker-analytics .mt-open span::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin-inline-end: 4px;
+    vertical-align: .13em;
+    background: var(--mt-accent);
+  }
+  #maxtracker-analytics .mt-open span + span::before { background: var(--mt-amber); }
+  #maxtracker-analytics .mt-charts { display: grid; grid-template-columns: minmax(0, 1.14fr) minmax(0, 1fr); gap: 9px; }
+  #maxtracker-analytics .mt-chart { min-width: 0; padding: 12px 13px; }
+  #maxtracker-analytics .mt-chart small, #maxtracker-analytics .mt-selection { color: var(--mt-muted); font-size: 12px; }
+  #maxtracker-analytics .mt-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-block: 7px 10px; color: var(--mt-muted); font-size: 12px; }
+  #maxtracker-analytics .mt-legend span::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-inline-end: 5px; border-radius: 2px; background: var(--mt-accent); }
+  #maxtracker-analytics .mt-legend span + span::before { background: var(--mt-mint); }
+  #maxtracker-analytics .mt-volume { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px; height: 173px; }
+  #maxtracker-analytics .mt-axis { display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 21px; text-align: right; color: var(--mt-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+  #maxtracker-analytics .mt-volume-body { position: relative; min-width: 0; }
+  #maxtracker-analytics .mt-gridlines { position: absolute; inset: 7px 0 24px; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none; }
+  #maxtracker-analytics .mt-gridlines i { border-top: 1px solid var(--mt-rule); }
+  #maxtracker-analytics .mt-buckets { position: relative; display: grid; grid-template-columns: repeat(var(--mt-bucket-count, 7), minmax(0, 1fr)); height: 100%; gap: 2px; }
+  #maxtracker-analytics .mt-bucket { display: grid; grid-template-rows: 1fr 24px; align-items: end; min-width: 0; padding: 7px 1px 0; border-radius: 6px; font-size: 11px; }
+  #maxtracker-analytics :is(.mt-bucket, .mt-speed-row, .mt-count-row):hover { background: #201d2a; }
+  #maxtracker-analytics :is(.mt-bucket, .mt-speed-row, .mt-count-row)[aria-pressed="true"] { color: var(--mt-ink); background: #302741; }
+  #maxtracker-analytics :is(.mt-bucket, .mt-speed-row, .mt-count-row):focus-visible { outline-offset: -2px; }
+  #maxtracker-analytics .mt-bars { display: flex; justify-content: center; align-items: end; gap: 2px; height: 100%; }
+  #maxtracker-analytics .mt-bars i { width: min(34%, 17px); height: var(--mt-size); border-radius: 3px 3px 0 0; background: var(--mt-accent); }
+  #maxtracker-analytics .mt-bars i + i { background: var(--mt-mint); }
+  #maxtracker-analytics .mt-bucket-label { align-self: center; }
+  #maxtracker-analytics :is(.mt-speed, .mt-counts) { display: grid; gap: 2px; }
+  #maxtracker-analytics :is(.mt-speed-row, .mt-count-row) { display: grid; grid-template-columns: minmax(70px, 30%) minmax(0, 1fr); gap: 6px; align-items: center; width: 100%; padding: 2px 4px; color: var(--mt-ink); text-align: left; min-height: 29px; }
+  #maxtracker-analytics .mt-count-row { grid-template-columns: minmax(70px, 33%) minmax(0, 1fr) 3.8em; }
+  #maxtracker-analytics .mt-chart-label { white-space: normal; overflow-wrap: anywhere; font-size: 12px; }
+  #maxtracker-analytics .mt-count-track { height: 8px; border-radius: 4px; overflow: hidden; background: #252330; }
+  #maxtracker-analytics .mt-count-track i { display: block; width: var(--mt-size); height: 100%; border-radius: inherit; background: var(--mt-accent); }
+  #maxtracker-analytics .mt-count-value { color: var(--mt-ink); font-size: 12px; font-variant-numeric: tabular-nums; text-align: right; }
+  #maxtracker-analytics .mt-speed-bars { display: grid; gap: 1px; min-width: 0; }
+  #maxtracker-analytics .mt-speed-measure { display: grid; grid-template-columns: minmax(0, 1fr) 2.65em; gap: 5px; align-items: center; color: var(--mt-muted); font-size: 11px; line-height: 1; font-variant-numeric: tabular-nums; text-align: right; }
+  #maxtracker-analytics .mt-speed-measure i { display: block; width: var(--mt-size); height: 5px; border-radius: 3px; background: var(--mt-accent); }
+  #maxtracker-analytics .mt-speed-measure + .mt-speed-measure i { background: var(--mt-mint); }
+  #maxtracker-analytics .mt-timeline summary { font-weight: 650; }
+  #maxtracker-analytics .mt-timeline summary::marker { color: var(--mt-accent); }
+  #maxtracker-analytics .mt-timeline-caption { margin-top: 5px; }
+  #maxtracker-analytics .mt-selection:not([hidden]) { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 9px; }
+  #maxtracker-analytics .mt-selection button { padding: 2px 6px; color: var(--mt-accent); }
+  #maxtracker-analytics .mt-breakdown { display: grid; gap: 8px; min-width: 0; }
+  #maxtracker-analytics table { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0; }
+  #maxtracker-analytics col:first-child { width: 20%; }
+  #maxtracker-analytics col:nth-child(2), #maxtracker-analytics col:nth-child(3) { width: 8%; }
+  #maxtracker-analytics col:nth-child(4) { width: 10%; }
+  #maxtracker-analytics :is(th, td) { text-align: right; padding: 8px 8px; font-variant-numeric: tabular-nums; }
+  #maxtracker-analytics tr > :first-child { text-align: left; padding-inline-start: 13px; }
+  #maxtracker-analytics tr > :last-child { padding-inline-end: 13px; }
+  #maxtracker-analytics thead th { color: var(--mt-muted); font-size: 12px; font-weight: 550; }
+  #maxtracker-analytics tbody tr > * { border-top: 1px solid var(--mt-rule); }
+  #maxtracker-analytics tbody th { font-weight: 620; overflow-wrap: anywhere; }
+  #maxtracker-analytics tbody td { white-space: nowrap; }
+  #maxtracker-analytics tbody td:nth-child(4) { color: var(--mt-mint); }
+  #maxtracker-analytics tbody th small { display: block; color: var(--mt-muted); font-size: 12px; font-weight: 400; }
+  #maxtracker-analytics .mt-attention { padding: 11px 13px 0; }
+  #maxtracker-analytics .mt-attention h3 { display: flex; align-items: center; gap: 6px; }
+  #maxtracker-analytics .mt-attention h3 svg { color: var(--mt-amber); }
+  #maxtracker-analytics .mt-attention ul { list-style: none; padding: 0; margin-top: 8px; }
+  #maxtracker-analytics .mt-attention li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 3px 10px;
+    border-top: 1px solid var(--mt-rule);
+    padding-block: 8px;
+  }
+  #maxtracker-analytics .mt-attention li small { color: var(--mt-muted); font-size: 12px; }
+  #maxtracker-analytics .mt-attention li strong { font-weight: 600; }
+  #maxtracker-analytics .mt-attention li span {
+    border-radius: 99px;
+    background: #34271f;
+    color: var(--mt-amber);
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 2px 7px;
+  }
+
+  @container (max-width: 720px) {
+    #maxtracker-analytics .mt-top { grid-template-columns: minmax(0, 1fr) auto; padding-inline: 13px; }
+    #maxtracker-analytics .mt-actions { grid-column: 2; grid-row: 1; }
+    #maxtracker-analytics .mt-period { grid-column: 1 / -1; justify-self: start; }
+    #maxtracker-analytics .mt-source { padding-inline: 14px; }
+    #maxtracker-analytics .mt-charts { grid-template-columns: minmax(0, 1fr); }
+    #maxtracker-analytics .mt-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #maxtracker-analytics .mt-content { padding-inline: 14px; }
+    #maxtracker-analytics tbody td { font-size: 12px; }
+  }
+  @container (max-width: 535px) {
+    #maxtracker-analytics .mt-actions button { padding-inline: 7px; font-size: 12px; }
+    #maxtracker-analytics .mt-period button { padding-inline: 7px; font-size: 12px; }
+    #maxtracker-analytics .mt-content { padding: 15px 12px; gap: 14px; }
+    #maxtracker-analytics .mt-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+    #maxtracker-analytics .mt-filter { display: grid; gap: 3px; }
+    #maxtracker-analytics .mt-filter select { width: 100%; min-width: 0; }
+    #maxtracker-analytics .mt-metric { padding: 9px; }
+    #maxtracker-analytics .mt-metric > span { font-size: 12px; }
+    #maxtracker-analytics .mt-grouping { grid-auto-columns: auto; }
+    #maxtracker-analytics .mt-grouping button { padding-inline: 7px; font-size: 12px; }
+    #maxtracker-analytics .mt-chart { padding-inline: 9px; }
+    #maxtracker-analytics :is(table, tbody) { display: block; }
+    #maxtracker-analytics colgroup { display: none; }
+    #maxtracker-analytics thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    #maxtracker-analytics tbody tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 4px; padding: 9px 11px; }
+    #maxtracker-analytics tbody tr + tr { border-top: 1px solid var(--mt-rule); }
+    #maxtracker-analytics tbody tr > * { text-align: left; padding: 0; border: 0; }
+    #maxtracker-analytics tbody th { grid-column: 1 / -1; }
+    #maxtracker-analytics tbody td::before { display: block; content: attr(data-label); color: var(--mt-muted); font-size: 11px; white-space: normal; }
+    #maxtracker-analytics .mt-attention li { grid-template-columns: minmax(0, 1fr) auto; }
+    #maxtracker-analytics .mt-attention li small { grid-column: 1; }
+    #maxtracker-analytics .mt-attention li span { grid-column: 2; grid-row: 1 / 3; }
+  }
+  @media (pointer: coarse) {
+    #maxtracker-analytics :is(button, select) { min-height: 44px; }
+    #maxtracker-analytics :is(.mt-count-row, .mt-speed-row) { min-height: 44px; }
+    #maxtracker-analytics .mt-date-form :is(input, button) { min-height: 44px; }
+  }

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>MaxTracker — настройки</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <header class="page-header">
+      <div class="app-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M25 14.5a9.5 9.5 0 0 1-9.5 9.5H9l-5 3V14.5a10.5 10.5 0 1 1 21 0Z"/><path d="m10 14 4 4 8-8"/></svg></div>
+      <div><div class="app-name">MaxTracker</div><h1>Настройки</h1></div>
+    </header>
+    <form id="settings" class="card">
+      <h2>Подключение</h2>
+      <p class="intro">Ваше имя будет видно коллегам рядом с обращением.</p>
+      <label for="operator">Имя пользователя</label>
+      <input id="operator" maxlength="100" required autocomplete="name" placeholder="Ваше имя" aria-describedby="namePrompt">
+      <p id="namePrompt" class="name-prompt" hidden>Представьтесь — это имя коллеги увидят рядом с вашим обращением.</p>
+      <label for="hub">Адрес LAN-хаба</label>
+      <input id="hub" type="url" required value="ws://192.168.100.90:8766" spellcheck="false" autocomplete="off">
+      <label class="check" for="lanEnabled"><span>Синхронизировать с коллегами</span><input id="lanEnabled" type="checkbox" role="switch" checked></label>
+      <div class="connection-row"><div id="connection" role="status" class="status">Проверяю подключение…</div></div>
+      <div class="actions"><button type="submit" id="save">Сохранить</button><span id="saved" role="status"></span></div>
+    </form>
+    <section class="card export-card">
+      <h2>Мои завершённые обращения</h2>
+      <p class="intro">Сохраните свою работу в файл, в том числе без TimeTracker.</p>
+      <p class="format">Чат — автор, обращение — ваши ответы — время, мин</p>
+      <div class="export-row"><button id="export" class="secondary" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4"/></svg>Выгрузить TXT</button><span id="recordCount" class="muted"></span></div>
+    </section>
+    <p id="error" class="error" role="alert" hidden></p>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

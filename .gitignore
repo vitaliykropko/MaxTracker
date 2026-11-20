@@ -1,0 +1,15 @@
+node_modules/
+test-results/
+artifacts/
+.playwright-cli/
+/releases/
+*.zip
+*.log
+__pycache__/
+lan_supervisor.lock
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm

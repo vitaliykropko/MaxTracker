@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MaxTracker · Аналитика</title>
+  <link rel="icon" href="/icon.png">
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+<section id="maxtracker-analytics" lang="ru" aria-labelledby="mt-analytics-title">
+  <header class="mt-top">
+    <div class="mt-brand"><img src="/icon.png" width="26" height="26" alt="">MaxTracker</div>
+    <div class="mt-segment mt-period" role="group" aria-label="Период">
+      <button type="button" data-period="today" aria-pressed="true">Сегодня</button>
+      <button type="button" data-period="month" aria-pressed="false">Этот месяц</button>
+      <button type="button" data-period="custom" aria-pressed="false" aria-expanded="false" popovertarget="mt-date-form">Свой период</button>
+    </div>
+    <div class="mt-actions">
+      <button type="button" data-refresh>Обновить</button>
+      <button type="button" data-open-settings>Настройки</button>
+    </div>
+  </header>
+
+  <div class="mt-source" data-source role="status">Читаю журнал MaxTracker…</div>
+  <div class="mt-content" data-report-content hidden>
+    <div id="mt-date-form" class="mt-date-form" role="group" aria-label="Произвольный период" popover="auto">
+      <label>С <input type="date" data-date-from required></label>
+      <label>По <input type="date" data-date-to required></label>
+      <span data-date-error role="alert" hidden></span>
+      <span data-date-coverage role="status" hidden></span>
+      <div class="mt-date-actions">
+        <button type="button" popovertarget="mt-date-form" popovertargetaction="hide">Отмена</button>
+        <button type="button" data-date-apply>Применить</button>
+      </div>
+    </div>
+    <div class="mt-heading">
+      <h2 id="mt-analytics-title">Аналитика команды</h2>
+      <div class="mt-filters">
+        <label class="mt-filter">
+          Отдел
+          <select data-department>
+            <option value="all">Все отделы</option>
+          </select>
+        </label>
+        <label class="mt-filter">
+          Чат
+          <select data-chat><option value="all">Все чаты</option></select>
+        </label>
+      </div>
+    </div>
+    <div class="mt-segment mt-grouping" role="group" aria-label="Группировка отчёта">
+      <button type="button" data-group="overall" aria-pressed="true">Общая</button>
+      <button type="button" data-group="chats" aria-pressed="false">Чаты</button>
+      <button type="button" data-group="employees" aria-pressed="false">Сотрудники</button>
+      <button type="button" data-group="departments" aria-pressed="false">Отделы</button>
+    </div>
+
+    <div class="mt-metrics" aria-live="polite">
+      <div class="mt-metric mt-rate">
+        <span>Доля закрытых</span>
+        <strong data-metric="rate"></strong>
+        <small data-metric="count"></small>
+        <div class="mt-track" aria-hidden="true"><span data-rate-bar></span></div>
+      </div>
+      <div class="mt-metric mt-reply">
+        <span data-reply-label>Первый ответ · среднее</span>
+        <strong data-metric="reply"></strong>
+        <small data-reply-description>От поступления до первого ответа</small>
+      </div>
+      <div class="mt-metric">
+        <span>Выполнение · среднее</span>
+        <strong data-metric="completion"></strong>
+        <small>От взятия до закрытия</small>
+      </div>
+      <div class="mt-metric">
+        <span>Открыто сейчас</span>
+        <strong data-metric="open"></strong>
+        <small class="mt-open"><span data-metric="running"></span><span data-metric="paused"></span></small>
+      </div>
+    </div>
+
+    <div class="mt-charts">
+      <section class="mt-chart" aria-labelledby="mt-count-title">
+        <div class="mt-section-heading">
+          <h3 id="mt-count-title">Обращения по чатам</h3>
+          <small data-count-range></small>
+        </div>
+        <div class="mt-legend"><span>Взято за период</span></div>
+        <div class="mt-counts" data-counts role="group" aria-labelledby="mt-count-title"></div>
+      </section>
+      <section class="mt-chart" aria-labelledby="mt-speed-title">
+        <div class="mt-section-heading">
+          <h3 id="mt-speed-title">Скорость по чатам</h3>
+          <small>Среднее, мин</small>
+        </div>
+        <div class="mt-legend"><span data-reply-legend>Первый ответ</span><span>Выполнение</span></div>
+        <div class="mt-speed" data-speed role="group" aria-label="Сравнение скорости обработки"></div>
+      </section>
+    </div>
+
+    <section class="mt-breakdown" aria-labelledby="mt-breakdown-title">
+      <div class="mt-section-heading">
+        <h3 id="mt-breakdown-title">Показатели за период</h3>
+      </div>
+      <div class="mt-selection" data-selection hidden>
+        <span aria-live="polite" data-selection-label></span>
+        <button type="button" data-reset>Сбросить выбор</button>
+      </div>
+      <div class="mt-table-wrap">
+        <table role="table" aria-labelledby="mt-breakdown-title">
+          <colgroup><col><col><col><col><col><col><col></colgroup>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th data-group-column scope="col" role="columnheader">Сводка</th>
+              <th scope="col" role="columnheader">Взято</th>
+              <th scope="col" role="columnheader">Закрыто</th>
+              <th scope="col" role="columnheader">Доля</th>
+              <th scope="col" role="columnheader" data-reply-column>Первый ответ</th>
+              <th scope="col" role="columnheader">Выполнение</th>
+              <th scope="col" role="columnheader">По таймеру</th>
+            </tr>
+          </thead>
+          <tbody data-rows role="rowgroup"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <details class="mt-chart mt-timeline">
+      <summary>Взято и закрыто по датам</summary>
+      <div class="mt-section-heading mt-timeline-caption">
+        <div class="mt-legend"><span>Взято</span><span>Закрыто</span></div>
+        <small data-chart-range></small>
+      </div>
+      <div class="mt-volume" role="group" aria-label="Обращения по дате взятия">
+        <div class="mt-axis" data-volume-axis aria-hidden="true"></div>
+        <div class="mt-volume-body">
+          <div class="mt-gridlines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="mt-buckets" data-volume></div>
+        </div>
+      </div>
+    </details>
+
+    <section class="mt-attention" aria-labelledby="mt-attention-title">
+      <div class="mt-section-heading">
+        <h3 id="mt-attention-title">Долго на паузе</h3>
+        <span>Больше часа</span>
+      </div>
+      <ul data-pauses></ul>
+    </section>
+
+    <details class="mt-timeline mt-chart">
+      <summary>Как считаются показатели</summary>
+      <p>Доля закрытых считается среди обращений, взятых за выбранный период, по их состоянию в журнале на момент обновления. Отменённые обращения исключаются.</p>
+      <p>В общей сводке обращение считается один раз. При передаче оно может учитываться у нескольких сотрудников. Закрытие относится к исполнителю, отправившему завершающий ответ, а время по таймеру — к тем, кто работал.</p>
+      <p>Время выполнения включает паузы. Таймер учитывает подтверждённые журналом отрезки. Открытые обращения и долгие паузы показываются на текущий момент.</p>
+    </details>
+  </div>
+
+  <dialog class="mt-settings" id="mt-settings" aria-labelledby="mt-settings-title">
+    <div class="mt-settings-head">
+      <h2 id="mt-settings-title">Настройки аналитики</h2>
+      <button type="button" data-close-settings>Закрыть</button>
+    </div>
+    <h3>Сотрудники и отделы</h3>
+    <p class="mt-settings-hint">Установки MaxTracker с одинаковым именем объединены в одну строку сотрудника.</p>
+    <div class="mt-settings-list" data-staff-settings></div>
+    <h3>Названия чатов</h3>
+    <div class="mt-settings-list" data-chat-settings></div>
+    <div class="mt-settings-foot">
+      <span role="status" data-settings-status></span>
+      <button type="button" data-save-settings>Сохранить</button>
+    </div>
+  </dialog>
+</section>
+</body>
+</html>

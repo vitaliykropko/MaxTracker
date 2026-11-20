@@ -1,0 +1,73 @@
+@property --mta-edge-reveal {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+.bubble:has(> .mta-message-edge) { position: relative; }
+.bubble > .mta-message-edge {
+  position: absolute; inset: 0 auto 0 0; width: 5px; pointer-events: none; z-index: 1;
+  clip-path: inset(0);
+  opacity: 1;
+}
+.mta-message-edge-previous { display: none; position: absolute; inset: 0; }
+:is(.mta-message-edge, .mta-message-edge-previous) {
+  --mta-color: #e8b500;
+  --mta-edge-opacity: .84;
+  --mta-edge-shape: linear-gradient(to bottom, transparent, #000 7px, #000 calc(100% - 7px), transparent);
+}
+:is(.mta-message-edge, .mta-message-edge-previous)[data-color="purple"] { --mta-color: #a45de7; }
+:is(.mta-message-edge, .mta-message-edge-previous)[data-color="green"] { --mta-color: #22a963; }
+:is(.mta-message-edge, .mta-message-edge-previous)[data-color="cyan"] { --mta-color: #00a6b7; }
+:is(.mta-message-edge, .mta-message-edge-previous)[data-paused="true"] {
+  --mta-edge-opacity: .64;
+  --mta-edge-shape: repeating-linear-gradient(to bottom, #000 0 5px, transparent 5px 9px);
+}
+:is(.mta-message-edge, .mta-message-edge-previous)::before {
+  content: "";
+  position: absolute;
+  inset: 5px 0;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(to top,
+    color-mix(in srgb, var(--mta-color) 82%, black),
+    var(--mta-color) 48%,
+    color-mix(in srgb, var(--mta-color) 67%, white));
+  opacity: var(--mta-edge-opacity);
+  mask-image: var(--mta-edge-shape), var(--mta-edge-wipe, linear-gradient(#000, #000));
+  mask-composite: intersect;
+}
+.bubble > .mta-message-edge[data-leaving] { clip-path: inset(100% 0 0); opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .bubble > .mta-message-edge { transition: clip-path 210ms cubic-bezier(.2, .65, .25, 1), opacity 210ms ease-out; }
+  @starting-style { .bubble > .mta-message-edge { clip-path: inset(100% 0 0); opacity: 0; } }
+  .mta-message-edge:has(> .mta-message-edge-previous) {
+    --mta-edge-wipe: radial-gradient(circle farthest-corner at right center,
+      #000 calc(var(--mta-edge-reveal) - 18%), transparent var(--mta-edge-reveal));
+  }
+  .mta-message-edge > .mta-message-edge-previous {
+    display: block;
+    --mta-edge-wipe: radial-gradient(circle farthest-corner at right center,
+      transparent calc(var(--mta-edge-reveal) - 18%), #000 var(--mta-edge-reveal));
+  }
+}
+.meta.mta-owner-host { min-width: 0; }
+.mta-owner-label { display: inline-flex; align-items: center; flex-shrink: 1; min-width: 0; max-width: 180px; overflow: hidden; white-space: nowrap; vertical-align: middle; color: inherit; font: 11px/16px var(--font, -apple-system, BlinkMacSystemFont, "Roboto", system-ui, sans-serif); margin-right: 3px; }
+.mta-owner-name { font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.mta-owner-state { font-weight: 400; flex-shrink: 0; opacity: .85; }
+.mta-owner-fallback { display: flex; justify-content: flex-end; align-items: center; padding: 4px 12px 6px; color: var(--bubbles-text-time,var(--text-secondary,#6f737a)); }
+
+.mta-chat-exclusion:disabled { cursor: wait; opacity: .7; }
+.mta-chat-exclusion:focus-visible { outline: 2px solid var(--button-primary, #007aff); outline-offset: -2px; }
+.mta-chat-exclusion-track {
+  position: relative; display: block; width: 28px; height: 16px; flex: 0 0 28px; margin-inline-start: auto;
+  border-radius: 999px; background: color-mix(in srgb, currentColor 24%, transparent);
+}
+.mta-chat-exclusion-track::before {
+  content: ""; position: absolute; inset: 2px auto 2px 2px; width: 12px;
+  border-radius: 50%; background: #fff; box-shadow: 0 1px 2px #0003;
+}
+.mta-chat-exclusion[aria-checked="true"] .mta-chat-exclusion-track { background: var(--button-primary, #007aff); }
+.mta-chat-exclusion[aria-checked="true"] .mta-chat-exclusion-track::before { transform: translateX(12px); }
+@media (prefers-reduced-motion: no-preference) {
+  .mta-chat-exclusion-track { transition: background-color 150ms ease-out; }
+  .mta-chat-exclusion-track::before { transition: transform 150ms ease-out; }
+}

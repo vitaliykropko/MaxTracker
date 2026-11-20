@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "revision": "2026-11-13.1",
+  "models": [
+    {"module": "/_app/immutable/chunks/uj-hx3bp.js", "chat": "xc", "router": "pi", "viewer": "vc"},
+    {"module": "/_app/immutable/chunks/Df-WhMUd.js", "chat": "yc", "router": "fi", "viewer": "gc"},
+    {"module": "/_app/immutable/chunks/Bi8ePAXH.js", "chat": "yc", "router": "fi", "viewer": "gc"},
+    {"module": "/_app/immutable/chunks/DPMqYNCb.js", "chat": "bc", "router": "fi", "viewer": "_c"}
+  ]
+}
